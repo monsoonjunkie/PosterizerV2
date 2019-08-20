@@ -3,8 +3,8 @@ import React from 'react';
 class Header extends React.Component {
 
   render() {
-
-    let itemCount = this.props.cartCount();
+    let cart = this.props.cartItemCount;
+    let itemCount = this.props.cartCount(cart);
     return (<div className="header">
       <div>POSTERIZER</div>
       <div className ="logoContainer d-flex ">

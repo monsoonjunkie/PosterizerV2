@@ -14,6 +14,7 @@ export default class App extends React.Component {
         id: null
       },
       cart: [],
+      cartReview: [],
       cartTotal: null
 
     };
@@ -28,12 +29,13 @@ export default class App extends React.Component {
 
   placeOrder(order) {
     let orderdetails = { name: order.name, address: order.address, city: order.city, state: order.state, zip: order.zip, creditcard: order.creditcard, expiration: order.expiration };
+    let currentCart = this.state.cart;
     fetch('/api/orders.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ customer: orderdetails, cart: this.state.cart }) })
       .then(response => response.json())
-      .then(response => this.setState({ cart: [] }));
+      .then(response => this.setState({ cart: [], cartReview: currentCart }));
 
   }
   getCartItems() {
@@ -99,22 +101,22 @@ export default class App extends React.Component {
     return total + num;
   }
 
-  cartPrice() {
-    if (!this.state.cart.length) {
+  cartPrice(cart) {
+    if (!cart.length) {
       return 0;
     } else {
-      let cartArr = this.state.cart;
+      let cartArr = cart;
       let cartPriceArr = cartArr.map(key => key.product.price * key.count);
       let total = cartPriceArr.reduce(this.total);
       return total;
 
     }
   }
-  cartCount() {
-    if (!this.state.cart.length) {
+  cartCount(cart) {
+    if (!cart.length) {
       return 0;
     } else {
-      let cartArr = this.state.cart;
+      let cartArr = cart;
       let cartCount = cartArr.map(key => key.count);
       let total = cartCount.reduce(this.total);
       return total;
@@ -124,7 +126,7 @@ export default class App extends React.Component {
   componentDidMount() {
     this.getProducts();
     this.getCartItems();
-    this.cartCount();
+    this.cartCount(this.state.cart);
   }
 
   render() {
@@ -157,7 +159,7 @@ export default class App extends React.Component {
       return (
         <div>
           <Header cartItemCount ={this.state.cart} cartCount = {this.cartCount} setView = {this.setView}/>
-          <CheckoutForm cart = {this.state.cart} cartPrice={this.cartPrice} setView={this.setView} placeOrder={this.placeOrder}/>
+          <CheckoutForm cart = {this.state.cart} cartReview ={this.state.cartReview} cartPrice={this.cartPrice} setView={this.setView} placeOrder={this.placeOrder}/>
         </div>
       );
     }
