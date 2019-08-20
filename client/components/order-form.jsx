@@ -117,7 +117,6 @@ class CheckoutForm extends React.Component {
   render() {
     let cart = this.props.cart;
     let cartReview = this.props.cartReview;
-    console.log(cartReview);
     let cartTotal = this.props.cartPrice(cart);
     let cartReviewTotal = this.props.cartPrice(cartReview);
     let cartTotalPrice = (cartTotal / 100).toFixed(2);
