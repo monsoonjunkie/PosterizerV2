@@ -25,7 +25,6 @@ class CartSummary extends React.Component {
   }
   render() {
     let cart = this.props.cart;
-    console.log(cart)
     let cartTotal = this.props.cartPrice(cart);
     let cartTotalPrice = (cartTotal / 100).toFixed(2);
     let CartSum = this.createItemList();
