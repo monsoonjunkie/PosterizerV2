@@ -25,6 +25,7 @@ class CartSummary extends React.Component {
   }
   render() {
     let cart = this.props.cart;
+    console.log(cart)
     let cartTotal = this.props.cartPrice(cart);
     let cartTotalPrice = (cartTotal / 100).toFixed(2);
     let CartSum = this.createItemList();
@@ -37,7 +38,7 @@ class CartSummary extends React.Component {
           <div className="col-4 align-items-center">
             <div className="total number">Current Total: ${cartTotalPrice}</div>
           </div>
-          <button className="btn btn-colorize" onClick={() => this.props.setView('checkout', {})}>Checkout</button>
+          <button className="btn btn-colorize" onClick={() => { cart.length > 0 ? this.props.setView('checkout', {}): console.log('false')}}>Checkout</button>
         </div>
 
         <div className="p-3">
