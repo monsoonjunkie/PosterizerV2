@@ -18,7 +18,7 @@ export default class OrderReviewSummary extends React.Component {
         let review = this.createItemList();
         return(
             <div>
-                <div>
+                <div className="review-scroll">
                     {review}
                 </div>
             </div>

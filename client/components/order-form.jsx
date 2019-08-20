@@ -217,7 +217,7 @@ class CheckoutForm extends React.Component {
             <div>
               <OrderReviewSummary cartReview={this.props.cartReview}/>
             </div>
-            <div class="return">Total: {cartReviewTotalPrice} </div>
+            <div class="thanks text-center thanks-bg mt-3">Total: {cartReviewTotalPrice} </div>
           </div>
           <div className= "thanks" >Thanks for shopping! We have sent your order!</div>
           <div className="d-flex justify-content-center ">
