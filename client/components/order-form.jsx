@@ -1,4 +1,5 @@
 import React from 'react';
+import OrderReviewSummary from "./order-review-summary";
 
 class CheckoutForm extends React.Component {
   constructor(props) {
@@ -114,8 +115,13 @@ class CheckoutForm extends React.Component {
   }
 
   render() {
-    let cartTotal = this.props.cartPrice();
+    let cart = this.props.cart;
+    let cartReview = this.props.cartReview;
+    console.log(cartReview);
+    let cartTotal = this.props.cartPrice(cart);
+    let cartReviewTotal = this.props.cartPrice(cartReview);
     let cartTotalPrice = (cartTotal / 100).toFixed(2);
+    let cartReviewTotalPrice= (cartReviewTotal / 100).toFixed(2);
     if (this.state.status === 'payment') {
       const { errors } = this.state;
       return (
@@ -206,6 +212,14 @@ class CheckoutForm extends React.Component {
     } else if (this.state.status === 'thankyou') {
       return (
         <div>
+          <div className="container">
+            <div class="thanks">Order Summary</div>
+            <div></div>
+            <div>
+              <OrderReviewSummary cartReview={this.props.cartReview}/>
+            </div>
+            <div class="return">Total: {cartReviewTotalPrice} </div>
+          </div>
           <div className= "thanks" >Thanks for shopping! We have sent your order!</div>
           <div className="d-flex justify-content-center ">
             <div>

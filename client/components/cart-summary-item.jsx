@@ -26,7 +26,7 @@ class CartSummaryItem extends React.Component {
 
             </div>
             <button className="btn btn-colorize fixed" onClick ={() => this.props.remove(cartItemId)}>Remove</button>
-          </div>
+            </div>
         </div>
       </div>
     );

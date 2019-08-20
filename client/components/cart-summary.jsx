@@ -24,11 +24,11 @@ class CartSummary extends React.Component {
     return listObj;
   }
   render() {
-
-    let cartTotal = this.props.cartPrice();
+    let cart = this.props.cart;
+    let cartTotal = this.props.cartPrice(cart);
     let cartTotalPrice = (cartTotal / 100).toFixed(2);
     let CartSum = this.createItemList();
-    let itemCount = this.props.cartCount();
+    let itemCount = this.props.cartCount(cart);
     return (
       <div className ="container">
         <div className="btn return" onClick={this.setViewReset}> {'<Back to catalog'} </div>
