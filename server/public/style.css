@@ -160,3 +160,6 @@
     max-height: 350px;
     overflow: scroll;
 }
+.review-cont {
+    background: #7fffd4 solid 3px;
+}
