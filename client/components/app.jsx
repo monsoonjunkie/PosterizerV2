@@ -159,7 +159,7 @@ export default class App extends React.Component {
       return (
         <div>
           <Header cartItemCount ={this.state.cart} cartCount = {this.cartCount} setView = {this.setView}/>
-          <CheckoutForm cart = {this.state.cart} cartReview ={this.state.cartReview} cartPrice={this.cartPrice} setView={this.setView} placeOrder={this.placeOrder}/>
+          <CheckoutForm cart = {this.state.cart} cartReview ={this.state.cartReview} cartPrice={this.cartPrice} setView={this.setView} placeOrder={this.placeOrder}  cartCount = {this.cartCount}/>
         </div>
       );
     }

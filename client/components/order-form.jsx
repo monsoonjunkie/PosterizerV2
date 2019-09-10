@@ -121,6 +121,7 @@ class CheckoutForm extends React.Component {
     let cartReviewTotal = this.props.cartPrice(cartReview);
     let cartTotalPrice = (cartTotal / 100).toFixed(2);
     let cartReviewTotalPrice= (cartReviewTotal / 100).toFixed(2);
+    let cartNumber = this.props.cartCount(cart)
     if (this.state.status === 'payment') {
       const { errors } = this.state;
       return (
@@ -188,8 +189,11 @@ class CheckoutForm extends React.Component {
         <div className="container">
           <div>Order Review</div>
           <div>
-            <div>Number of items : {this.props.cart.length}</div>
+            <div>Number of items : {cartNumber}</div>
             <div>Current Total: ${cartTotalPrice}</div>
+            <div>
+              <OrderReviewSummary cartReview={this.props.cart}/>
+            </div>
             <div className="container">
               <div className="card cleaner">
                 <div>Name: {this.state.name}</div>
@@ -212,12 +216,11 @@ class CheckoutForm extends React.Component {
       return (
         <div>
           <div className="container">
-            <div class="thanks">Order Summary</div>
-            <div></div>
+            <div className="thanks">Order Summary</div>
             <div>
               <OrderReviewSummary cartReview={this.props.cartReview}/>
             </div>
-            <div class="thanks text-center thanks-bg mt-3">Total: {cartReviewTotalPrice} </div>
+            <div className="thanks text-center thanks-bg mt-3">Total: {cartReviewTotalPrice} </div>
           </div>
           <div className= "thanks" >Thanks for shopping! We have sent your order!</div>
           <div className="d-flex justify-content-center ">
