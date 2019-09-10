@@ -1,0 +1,166 @@
+.imageSize{
+    background-size: contain;
+}
+.header {
+    text-align: center;
+    font-size: 3em;
+    font-style: bold;
+    font-family: 'Londrina Solid', cursive;
+}
+.itemContainer{
+    height: 550px;
+    text-align: center
+}
+.itemContainer:hover{
+    cursor: pointer;
+}
+.product{
+    font-size: 1em;
+}
+.img{
+    height: 400px;
+    object-fit: contain;
+}
+.logo{
+    color: aquamarine;
+    font-size: 4rem;
+}
+.logoContainer{
+    background-color: black;
+}
+.return:hover{
+    cursor: pointer;
+}
+.items{
+    font-size: 1.25rem;
+}
+.shoppingCart{
+    color:white;
+}
+.cart{
+    text-align: left;
+    font-size: 2em;
+    font-style: bold;
+    font-family: 'Londrina Solid', cursive;
+}
+.total{
+    background-color: black;
+    color: white;
+    border-radius: 3px;
+    padding: 6px;
+    
+}
+.number{
+    font-family: 'Mukta', sans-serif;
+}
+.fixed{
+    margin-bottom: 10px;
+}
+.outline{
+    border-style: solid;
+    border-color: gray;
+    border-width: 4px;
+    border-radius: 6px;
+    padding: 10px;
+    margin: 6px;
+}
+.formTotal{
+    font-size: 25px;
+    color: #7fffd4;
+    font-weight: bold;
+    background-color: black;
+    padding: 6px;
+    border-radius: 3px;
+}
+.wrongInput{
+    color:  #e75454;
+    font-weight: bold;
+    margin: 0;
+    font-weight: 2vh;
+}
+.check{
+    font-size: 2.75vh;
+    font-weight: bold;
+}
+.logo-sum{
+    height: 200px;
+    text-align:  center;
+    margin-bottom: 10px;
+    background-color: rgba(0,123,255,.25);
+}
+.glasses{
+    height: 70%;
+}
+.subtitle{
+    text-align: center;
+    font-size: 2em;
+    font-style: bold;
+    font-family: 'Londrina Solid', cursive;
+}
+.quant{
+    margin-right: 9px;
+    margin-left: 9px;
+    font-size: 2em;
+}
+.btn-black{
+    background-color: black;
+    color: white;
+    width: 4rem;
+    height: 4rem;
+    font-size: 30px;
+}
+.btn-colorize{
+    background-color: aquamarine;
+    color: black;
+    font-size: 1.5em;
+    font-weight: bolder;
+    margin: 10px;
+}
+.return{
+    color: #7fffd4;
+    font-size: 1.25rem;
+    background-color: black;
+    font-family: 'Londrina Solid';
+    margin-bottom: 10px;
+}
+.btn-black2{
+    background-color: black;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bolder;
+    margin: 10px;
+}
+.thanks{
+    color: black;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 2rem;
+    padding: 10px;
+    font-family: 'Londrina Solid', cursive;
+}
+.cleaner{
+    color: black;
+    background-color: #e3f4ef;
+    padding: 10px;
+}
+.shopicon:hover{
+    cursor: pointer;
+    color: #7fffd4;
+}
+.review-item{
+    max-height: 200px;
+    height: auto;
+}   
+.thanks-bg{
+    background-color: rgb(127, 255, 212);
+    border: solid 2px #98d2bf;
+    border-radius: 9px;
+}
+.review-scroll{
+    max-height: 350px;
+    overflow: scroll;
+}
+.review-font{
+    font-family: 'Londrina Solid', cursive;
+    font-size: 20px;
+}
