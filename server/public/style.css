@@ -160,9 +160,7 @@
     max-height: 350px;
     overflow: scroll;
 }
-.review-cont {
-    background: #7fffd4 solid 6px;
-}
-.review-cont-avail{
+.review-font{
+    font-family: 'Londrina Solid', cursive;
     font-size: 20px;
 }
