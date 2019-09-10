@@ -187,15 +187,15 @@ class CheckoutForm extends React.Component {
       let cardInfo = this.hideCreditCard(this.state.creditcard);
       return (
         <div className="container">
-          <div>Order Review</div>
+          <div className="thanks">Order Review</div>
           <div>
-            <div>Number of items : {cartNumber}</div>
-            <div>Current Total: ${cartTotalPrice}</div>
+            <div className="review-font">Number of items : {cartNumber}</div>
+            <div className="review-font mb-1">Current Total: ${cartTotalPrice}</div>
             <div>
               <OrderReviewSummary cartReview={this.props.cart}/>
             </div>
             <div className="container">
-              <div className="card cleaner">
+              <div className="card cleaner review-font">
                 <div>Name: {this.state.name}</div>
                 <div>Address: {this.state.address}</div>
                 <div>State:{this.state.city}</div>
