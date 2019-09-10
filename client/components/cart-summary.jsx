@@ -37,7 +37,7 @@ class CartSummary extends React.Component {
           <div className="col-4 align-items-center">
             <div className="total number">Current Total: ${cartTotalPrice}</div>
           </div>
-          <button className="btn btn-colorize" onClick={() => { cart.length > 0 ? this.props.setView('checkout', {}): console.log('false')}}>Checkout</button>
+          <button className="btn btn-colorize" onClick={() => { cart.length > 0 ? this.props.setView('checkout', {}): false}}>Checkout</button>
         </div>
 
         <div className="p-3">
