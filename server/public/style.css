@@ -170,3 +170,10 @@
 .lod-font {
     font-family: 'Londrina Solid', cursive;
 }
+.alt-color {
+    background-color: #e75454;
+}
+.container-box{
+    height: 500px;
+    width: 500px;
+}
