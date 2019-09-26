@@ -2,10 +2,32 @@ import React from 'react';
 
 class CartSummaryItem extends React.Component {
 
+  constructor(props){
+    super(props);
+    this.state = {
+      product: this.props.item.product,
+      count: this.props.item.count
+    }
+    this.handleAdd = this.handleAdd.bind(this);
+    this.handleMinus  = this.handleMinus.bind(this);
+  }
+  handleAdd() {
+    let newCount = this.state.count + 1
+    this.setState({
+      count: newCount})
+  }
+
+  handleMinus() {
+    let newCount = this.state.count - 1
+    this.setState({
+      count: newCount})
+  }
+  
   render() {
     let cartItemId = this.props.cartId - 1;
     let product = this.props.item.product;
     let price = (product.price / 100).toFixed(2);
+    
     return (
       <div className="container">
 
@@ -23,7 +45,14 @@ class CartSummaryItem extends React.Component {
                 <div>Number of items: {this.props.item.count}</div>
               </div>
               <p className="card-text product">{product.shortDescription}</p>
-
+              <div className="d-flex justify-content-center mb-1">
+                  <button className="btn btn-black increment" onClick={this.handleMinus} >-</button>
+                  <div className="number quant p-2">{this.state.count}</div>
+                  <button className="btn btn-black increment"onClick={this.handleAdd}>+</button>
+                  <button className="btn btn-colorize" onClick={() => {
+                  this.props.updateCart(cartItemId, this.state);
+                }}>Confirm</button>
+              </div>
             </div>
             <button className="btn btn-colorize fixed" onClick ={() => this.props.remove(cartItemId)}>Remove</button>
             </div>

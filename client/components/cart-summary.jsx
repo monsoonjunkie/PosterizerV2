@@ -17,7 +17,7 @@ class CartSummary extends React.Component {
     let counter = 0;
     let listObj = listArr.map(itemObj => {
       counter++;
-      return <CartSummaryItem key ={counter} cartId ={counter} item ={itemObj} setView={this.props.setView} remove = {this.props.remove}/>;
+      return <CartSummaryItem key ={counter} cartId ={counter} updateCart = {this.props.updateCart} item ={itemObj} setView={this.props.setView} remove = {this.props.remove}/>;
 
     });
 
