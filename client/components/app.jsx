@@ -80,6 +80,7 @@ export default class App extends React.Component {
       .then(response => {
         const newCart = [...this.state.cart];
         newCart.splice(cartId, 1);
+        console.log('cart after remove', newCart)
         this.setState({ cart: newCart });
       });
 
@@ -125,10 +126,9 @@ export default class App extends React.Component {
       return total;
     }
   }
-  updateCart(cartId, item) {
+  updateCart(cartId, count) {
     const newCart = [...this.state.cart];
-    newCart[cartId] = item;
-    console.log('newCart',this.state.cart)
+    newCart[cartId].count = count;
     this.setState({cart: newCart});
   }
   itemIncrement(itemCount) {
@@ -167,7 +167,7 @@ export default class App extends React.Component {
       return (
         <div>
           <Header cartItemCount ={this.state.cart} cartCount = {this.cartCount} setView = {this.setView}/>
-          <CartSummary updateCart = {this.updateCart} cartCount = {this.cartCount} cart = {this.state.cart} cartPrice={this.cartPrice} setView = {this.setView} remove = {this.removeFromCart}/>
+          <CartSummary add ={this.itemIncrement} subtract = {this.itemDecrement} updateCart = {this.updateCart} cartCount = {this.cartCount} cart = {this.state.cart} cartPrice={this.cartPrice} setView = {this.setView} remove = {this.removeFromCart}/>
         </div>
       );
     }
