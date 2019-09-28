@@ -17,7 +17,7 @@ class CartSummary extends React.Component {
     let counter = 0;
     let listObj = listArr.map(itemObj => {
       counter++;
-      return <CartSummaryItem key ={counter} cartId ={counter} add = {this.props.add} substract = {this.props.subtract} updateCart = {this.props.updateCart} item ={itemObj} setView={this.props.setView} remove = {this.props.remove}/>;
+      return <CartSummaryItem key ={counter} cartId ={counter} updateCart = {this.props.updateCart} item ={itemObj} setView={this.props.setView} remove = {this.props.remove}/>;
 
     });
 
@@ -30,7 +30,7 @@ class CartSummary extends React.Component {
     let CartSum = this.createItemList();
     let itemCount = this.props.cartCount(cart);
     
-    console.log('cart in item',this.props.cart)
+    
     return (
       <div className ="container">
         <div className="btn return" onClick={this.setViewReset}> {'<Back to catalog'} </div>

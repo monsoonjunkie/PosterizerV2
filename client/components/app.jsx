@@ -80,7 +80,6 @@ export default class App extends React.Component {
       .then(response => {
         const newCart = [...this.state.cart];
         newCart.splice(cartId, 1);
-        console.log('cart after remove', newCart)
         this.setState({ cart: newCart });
       });
 
@@ -132,11 +131,13 @@ export default class App extends React.Component {
     this.setState({cart: newCart});
   }
   itemIncrement(itemCount) {
-    this.setState({count: itemCount + 1})
+    itemCount + 1;
+    console.log('count', itemCount);
   }
   
   itemDecrement(itemCount) {
-    this.setState({count: itemCount - 1})
+    itemCount - 1;
+    console.log('count', itemCount);
   }
 
   componentDidMount() {
@@ -146,7 +147,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    console.log('cart', this.state.cart)
+    console.log('view', this.state.view)
     if (this.state.view.name === 'catalog') {
       return (
         <div>
