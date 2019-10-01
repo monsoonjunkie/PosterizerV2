@@ -95,21 +95,21 @@ class CheckoutForm extends React.Component {
     }
 
     if (!regexPhoneNumber.test(phonenumber)) {
-      errors.push('phone number is not valid');
+      errors.push('Phone number is not valid');
     }
 
     if (creditcard.length === 0) {
-      errors.push("creditcard can't be empty");
+      errors.push("Credit card can't be empty");
     }
     if (!regexCreditCard.test(creditcard)) {
-      errors.push('creditcard account needs to be valid');
+      errors.push('Credit card account needs to be valid');
     }
 
     if (expiration.length === 0) {
-      errors.push("card expiration can't be empty");
+      errors.push("Card expiration can't be empty");
     }
     if (!month || !year || month > 12 || (year <= currentYear && month < currentMonth)) {
-      errors.push('card expiration is not valid');
+      errors.push('Card expiration is not valid');
     }
     return errors;
   }
