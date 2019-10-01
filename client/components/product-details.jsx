@@ -5,13 +5,14 @@ class ProductDetails extends React.Component {
     super(props);
     this.state = {
       product: null,
-      count: 1
-
+      count: 1,
+      next: false
     };
     this.getProductId = this.getProductId.bind(this);
     this.setViewReset = this.setViewReset.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
     this.handleMinus = this.handleMinus.bind(this);
+    this.confirmAdd = this.confirmAdd.bind(this);
   }
   componentDidMount() {
     this.getProductId(this.props.viewDetailsId);
@@ -40,12 +41,51 @@ class ProductDetails extends React.Component {
     }
   }
 
-  setViewReset() {
-    this.props.setView('catalog', {});
+  setViewReset(view) {
+    this.props.setView(view, {});
+  }
+
+  confirmAdd() {
+    let count = this.state.count;
+    if(!this.state.next){
+      return(
+        <div>
+          <div className="d-flex justify-content-center mb-1">
+                  <button className="btn btn-black increment" onClick={this.handleMinus} >-</button>
+                  <div className="number quant p-2">{count}</div>
+                  <button className="btn btn-black increment"onClick={this.handleAdd}>+</button>
+                  
+          </div>
+          <div className="d-flex justify-content-center">
+            <button className="btn btn-colorize" onClick={() => {
+                  this.props.addCart(this.state, this.state.count); this.setState({ count: 1, next: true});
+                }}>Add to Cart</button>
+          </div>
+          
+        </div>
+      )
+    }else{
+      return (
+        <div>
+          <h3 className =" lod-font text-center mb-5">What would you like to do next?</h3>
+        
+          <div className="d-flex justify-content-center">
+            <button className=" btn return fixed" onClick ={() => {
+                  this.setViewReset('catalog')
+                  }}>Back to Catalog</button>
+                <button className=" btn return fixed ml-5" onClick ={() => {
+                  this.setViewReset('cart'); 
+                  }}>Go to Cart</button>
+          </div>
+        </div>
+      )
+    }
   }
 
   render() {
+    
     let count = this.state.count;
+    let addItem = this.confirmAdd();
     if (this.state.product === null) {
       return (
         <div className="d-flex justify-content-center">
@@ -62,7 +102,7 @@ class ProductDetails extends React.Component {
         <div>
 
           <div className="container">
-            <div className="btn return" onClick={this.setViewReset}> {'<Back to catalog'} </div>
+            <div className="btn return" onClick={() =>this.setViewReset('catalog')}> {'<Back to catalog'} </div>
             <div className= "row">
 
               <div className="col-sm-6">
@@ -76,14 +116,15 @@ class ProductDetails extends React.Component {
 
                   <p className="card-text product">{product.shortDescription}</p>
                 </div>
-                <div className="d-flex justify-content-center mb-1">
+                {/* <div className="d-flex justify-content-center mb-1">
                   <button className="btn btn-black increment" onClick={this.handleMinus} >-</button>
                   <div className="number quant p-2">{count}</div>
                   <button className="btn btn-black increment"onClick={this.handleAdd}>+</button>
-                </div>
-                <button className="btn btn-colorize" onClick={() => {
+                </div> */}
+                {addItem}
+                {/* <button className="btn btn-colorize" onClick={() => {
                   this.props.addCart(this.state, this.state.count); this.setState({ count: 1 });
-                }}>Add to Cart</button>
+                }}>Add to Cart</button> */}
               </div>
 
             </div>
