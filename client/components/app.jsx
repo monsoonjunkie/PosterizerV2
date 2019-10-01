@@ -15,7 +15,8 @@ export default class App extends React.Component {
       },
       cart: [],
       cartReview: [],
-      cartTotal: null
+      cartTotal: null,
+      modalView: 1,
 
     };
     this.setView = this.setView.bind(this);
