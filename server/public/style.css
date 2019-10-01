@@ -184,9 +184,6 @@
     display: none;
 }
 .update-button {
-    font-size: 1rem;
-    background: black;
-    color: white;
     margin-left: 9px;
     height: 3rem;
 }

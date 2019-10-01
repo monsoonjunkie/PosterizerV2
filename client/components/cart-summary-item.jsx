@@ -103,7 +103,7 @@ class CartSummaryItem extends React.Component {
                   <button className={`btn btn-black increment ${this.state.active}`} onClick={this.handleMinus} >-</button>
                   <div className={`number quant p-2 ${this.state.active}`}>{this.state.count}</div>
                   <button className={`btn btn-black increment ${this.state.active}`}onClick={this.handleAdd}>+</button>
-                  <button className="btn update-button"onClick = {this.toggleUpdate}>{confirm}</button>
+                  <button className="btn update-button return"onClick = {this.toggleUpdate}>{confirm}</button>
               </div>
             </div>
               {removal}
