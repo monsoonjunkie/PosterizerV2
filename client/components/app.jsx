@@ -24,6 +24,8 @@ export default class App extends React.Component {
     this.cartPrice = this.cartPrice.bind(this);
     this.cartCount = this.cartCount.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
+    this.updateCart = this.updateCart.bind(this);
+
 
   }
 
@@ -78,6 +80,7 @@ export default class App extends React.Component {
         const newCart = [...this.state.cart];
         newCart.splice(cartId, 1);
         this.setState({ cart: newCart });
+        
       });
 
   }
@@ -122,6 +125,11 @@ export default class App extends React.Component {
       return total;
     }
   }
+  updateCart(cartId, count) {
+    const newCart = [...this.state.cart];
+    newCart[cartId].count = count;
+    this.setState({cart: newCart});
+  }
 
   componentDidMount() {
     this.getProducts();
@@ -130,7 +138,6 @@ export default class App extends React.Component {
   }
 
   render() {
-
     if (this.state.view.name === 'catalog') {
       return (
         <div>
@@ -151,7 +158,7 @@ export default class App extends React.Component {
       return (
         <div>
           <Header cartItemCount ={this.state.cart} cartCount = {this.cartCount} setView = {this.setView}/>
-          <CartSummary cartCount = {this.cartCount} cart = {this.state.cart} cartPrice={this.cartPrice} setView = {this.setView} remove = {this.removeFromCart}/>
+          <CartSummary add ={this.itemIncrement} subtract = {this.itemDecrement} updateCart = {this.updateCart} cartCount = {this.cartCount} cart = {this.state.cart} cartPrice={this.cartPrice} setView = {this.setView} remove = {this.removeFromCart}/>
         </div>
       );
     }
