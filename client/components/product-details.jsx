@@ -71,7 +71,7 @@ class ProductDetails extends React.Component {
 
               <div className="col-sm-6 card">
                 <div className= "card-body">
-                  <h3 className="card-title card-heading">{product.name}</h3>
+                  <h3 className="lod-font card-title card-heading">{product.name}</h3>
                   <h5 className="number">${price}</h5>
 
                   <p className="card-text product">{product.shortDescription}</p>
