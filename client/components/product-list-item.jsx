@@ -11,7 +11,7 @@ class ProductListItem extends React.Component {
       <div className = "card col-sm-4 itemContainer" onClick={() => this.props.setView('details', product.id)} >
         <img className="card-img-top img" src = {product.image}></img>
         <div className= "card-body">
-          <h4 className="card-title card-heading">{product.name}</h4>
+          <h4 className="lod-font card-title card-heading">{product.name}</h4>
           <h5 className="number">${price}</h5>
         </div>
       </div>

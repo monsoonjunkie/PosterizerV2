@@ -13,7 +13,7 @@ class CheckoutForm extends React.Component {
       zip: '',
       phonenumber: '',
       expiration: '',
-      status: 'payment',
+      status: this.props.status,
       clear: false,
       errors: []
     };
@@ -39,7 +39,8 @@ class CheckoutForm extends React.Component {
     if (errors.length > 0) {
       this.setState({ errors });
 
-    } else {
+    } else {      
+      sessionStorage.setItem('checkout', JSON.stringify('payment'));
       this.setState({ status: 'review' });
     }
 
@@ -95,33 +96,35 @@ class CheckoutForm extends React.Component {
     }
 
     if (!regexPhoneNumber.test(phonenumber)) {
-      errors.push('phone number is not valid');
+      errors.push('Phone number is not valid');
     }
 
     if (creditcard.length === 0) {
-      errors.push("creditcard can't be empty");
+      errors.push("Credit card can't be empty");
     }
     if (!regexCreditCard.test(creditcard)) {
-      errors.push('creditcard account needs to be valid');
+      errors.push('Credit card account needs to be valid');
     }
 
     if (expiration.length === 0) {
-      errors.push("card expiration can't be empty");
+      errors.push("Card expiration can't be empty");
     }
     if (!month || !year || month > 12 || (year <= currentYear && month < currentMonth)) {
-      errors.push('card expiration is not valid');
+      errors.push('Card expiration is not valid');
     }
     return errors;
   }
 
   render() {
+
     let cart = this.props.cart;
     let cartReview = this.props.cartReview;
     let cartTotal = this.props.cartPrice(cart);
     let cartReviewTotal = this.props.cartPrice(cartReview);
     let cartTotalPrice = (cartTotal / 100).toFixed(2);
     let cartReviewTotalPrice= (cartReviewTotal / 100).toFixed(2);
-    let cartNumber = this.props.cartCount(cart)
+    let cartNumber = this.props.cartCount(cart);
+    let userInfo = this.props.user
     if (this.state.status === 'payment') {
       const { errors } = this.state;
       return (
