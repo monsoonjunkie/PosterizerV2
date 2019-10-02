@@ -13,7 +13,7 @@ class CheckoutForm extends React.Component {
       zip: '',
       phonenumber: '',
       expiration: '',
-      status: 'payment',
+      status: this.props.status,
       clear: false,
       errors: []
     };
@@ -39,7 +39,8 @@ class CheckoutForm extends React.Component {
     if (errors.length > 0) {
       this.setState({ errors });
 
-    } else {
+    } else {      
+      sessionStorage.setItem('checkout', JSON.stringify('payment'));
       this.setState({ status: 'review' });
     }
 
@@ -115,13 +116,15 @@ class CheckoutForm extends React.Component {
   }
 
   render() {
+
     let cart = this.props.cart;
     let cartReview = this.props.cartReview;
     let cartTotal = this.props.cartPrice(cart);
     let cartReviewTotal = this.props.cartPrice(cartReview);
     let cartTotalPrice = (cartTotal / 100).toFixed(2);
     let cartReviewTotalPrice= (cartReviewTotal / 100).toFixed(2);
-    let cartNumber = this.props.cartCount(cart)
+    let cartNumber = this.props.cartCount(cart);
+    let userInfo = this.props.user
     if (this.state.status === 'payment') {
       const { errors } = this.state;
       return (
