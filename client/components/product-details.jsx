@@ -116,17 +116,8 @@ class ProductDetails extends React.Component {
 
                   <p className="card-text product">{product.shortDescription}</p>
                 </div>
-                {/* <div className="d-flex justify-content-center mb-1">
-                  <button className="btn btn-black increment" onClick={this.handleMinus} >-</button>
-                  <div className="number quant p-2">{count}</div>
-                  <button className="btn btn-black increment"onClick={this.handleAdd}>+</button>
-                </div> */}
                 {addItem}
-                {/* <button className="btn btn-colorize" onClick={() => {
-                  this.props.addCart(this.state, this.state.count); this.setState({ count: 1 });
-                }}>Add to Cart</button> */}
               </div>
-
             </div>
             <div className="container mt-1 p-0 ">
               <h4>Product Description</h4>

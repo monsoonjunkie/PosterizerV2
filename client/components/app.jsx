@@ -16,6 +16,9 @@ export default class App extends React.Component {
       cart: [],
       cartReview: [],
       cartTotal: null,
+      status: 'payment',
+      userInfo: null,
+      pId: null
     };
     this.setView = this.setView.bind(this);
     this.addToCart = this.addToCart.bind(this);
@@ -24,8 +27,9 @@ export default class App extends React.Component {
     this.cartCount = this.cartCount.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
     this.updateCart = this.updateCart.bind(this);
-
-
+    this.getSessionCart = this.getSessionCart.bind(this);
+    this.getSessionPage = this.getSessionPage.bind(this);
+    this.getCheckout = this.getCheckout.bind(this);
   }
 
   placeOrder(order) {
@@ -36,7 +40,12 @@ export default class App extends React.Component {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ customer: orderdetails, cart: this.state.cart }) })
       .then(response => response.json())
-      .then(response => this.setState({ cart: [], cartReview: currentCart }));
+      .then(response => {
+        
+        sessionStorage.setItem('cart', JSON.stringify([]));
+        sessionStorage.setItem('view', JSON.stringify({"name":"catalog"}));
+        sessionStorage.setItem('checkout', JSON.stringify("payment"));
+        this.setState({ cart: [], cartReview: currentCart })});
 
   }
   getCartItems() {
@@ -66,6 +75,7 @@ export default class App extends React.Component {
       newCart.push(productObj);
     }
     this.setState({ cart: newCart });
+    sessionStorage.setItem('cart', JSON.stringify(newCart));
   }
 
   removeFromCart(cartId) {
@@ -78,6 +88,7 @@ export default class App extends React.Component {
       .then(response => {
         const newCart = [...this.state.cart];
         newCart.splice(cartId, 1);
+        sessionStorage.setItem('cart', JSON.stringify(newCart));
         this.setState({ cart: newCart });
         
       });
@@ -96,6 +107,7 @@ export default class App extends React.Component {
   }
 
   setView(name, id) {
+    sessionStorage.setItem('view', JSON.stringify({name: name, id: id}));
     this.setState({ view: { name: name, id: id } });
   }
 
@@ -115,6 +127,7 @@ export default class App extends React.Component {
     }
   }
   cartCount(cart) {
+
     if (!cart.length) {
       return 0;
     } else {
@@ -127,16 +140,59 @@ export default class App extends React.Component {
   updateCart(cartId, count) {
     const newCart = [...this.state.cart];
     newCart[cartId].count = count;
+    sessionStorage.setItem('cart', JSON.stringify(newCart));
     this.setState({cart: newCart});
+  }
+  getSessionCart() {
+    if(!sessionStorage.getItem('cart') || null ){
+      
+      sessionStorage.setItem('cart', JSON.stringify(this.state.cart));
+
+    } else {
+      let cacheCart = JSON.parse(sessionStorage.getItem('cart'));
+      this.setState({ cart: cacheCart })
+    }
+  }
+  getSessionPage() {
+    if(!sessionStorage.getItem('view') || null ){
+      sessionStorage.setItem('view', JSON.stringify(this.state.view));
+      
+    }else {
+      
+      let cachePage = JSON.parse(sessionStorage.getItem('view'));
+      this.setState({ view: cachePage})
+    }
+  }
+  getCheckout(){
+    if(!sessionStorage.getItem('checkout') || null){
+      sessionStorage.setItem('checkout', JSON.stringify(this.state.status));
+
+    }else{
+      let checkoutPage = JSON.parse(sessionStorage.getItem('checkout'));
+      this.setState({status: checkoutPage})
+    }
+  }
+  getUser() {
+    if(!sessionStorage.getItem('user')){
+      sessionStorage.setItem('user', JSON.stringify(this.state.userInfo))
+    } else {
+      let userstuff = JSON.parse(sessionStorage.getItem('user'));
+      this.setState({userInfo: userstuff})
+    }
   }
 
   componentDidMount() {
     this.getProducts();
-    this.getCartItems();
     this.cartCount(this.state.cart);
+    this.getSessionCart();
+    this.getSessionPage();
+    this.getCheckout();
+    this.getUser();
   }
 
   render() {
+    
+
     if (this.state.view.name === 'catalog') {
       return (
         <div>
@@ -165,7 +221,7 @@ export default class App extends React.Component {
       return (
         <div>
           <Header cartItemCount ={this.state.cart} cartCount = {this.cartCount} setView = {this.setView}/>
-          <CheckoutForm cart = {this.state.cart} cartReview ={this.state.cartReview} cartPrice={this.cartPrice} setView={this.setView} placeOrder={this.placeOrder}  cartCount = {this.cartCount}/>
+          <CheckoutForm user ={this.state.userInfo} status = {this.state.status} cart = {this.state.cart} cartReview ={this.state.cartReview} cartPrice={this.cartPrice} setView={this.setView} placeOrder={this.placeOrder}  cartCount = {this.cartCount}/>
         </div>
       );
     }
